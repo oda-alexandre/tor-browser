@@ -10,9 +10,9 @@ RUN useradd -d /home/torbrowser -m torbrowser
 RUN passwd -d torbrowser
 RUN adduser torbrowser sudo
 
-RUN wget https://dist.torproject.org/torbrowser/7.5.6/tor-browser-linux64-7.5.6_fr.tar.xz
-RUN tar -xvJf tor-browser-linux64-7.5.6_fr.tar.xz
-RUN rm -rf tor-browser-linux64-7.5.6_fr.tar.xz
+RUN wget https://www.torproject.org/dist/torbrowser//8.0.3/tor-browser-linux64-8.0.3_fr.tar.xz
+RUN tar -xvJf tor-browser-linux64-8.0.3_fr.tar.xz
+RUN rm -rf tor-browser-linux64-8.0.3_fr.tar.xz
 RUN chown -R torbrowser:torbrowser tor-browser_fr/
 RUN cd tor-browser_fr/Browser/ && chmod +x start-tor-browser
 
