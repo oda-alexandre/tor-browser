@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM debian:buster-slim
 
 MAINTAINER https://oda-alexandre.github.io
 
@@ -10,14 +10,18 @@ RUN useradd -d /home/torbrowser -m torbrowser
 RUN passwd -d torbrowser
 RUN adduser torbrowser sudo
 
-RUN wget https://www.torproject.org/dist/torbrowser//8.0.3/tor-browser-linux64-8.0.3_fr.tar.xz
-RUN tar -xvJf tor-browser-linux64-8.0.3_fr.tar.xz
-RUN rm -rf tor-browser-linux64-8.0.3_fr.tar.xz
-RUN chown -R torbrowser:torbrowser tor-browser_fr/
-RUN cd tor-browser_fr/Browser/ && chmod +x start-tor-browser
-
-RUN apt-get --purge autoremove -y wget xz-utils
-
 USER torbrowser
+
+WORKDIR /home/torbrowser/
+
+RUN wget https://dist.torproject.org/torbrowser/8.0.3/tor-browser-linux64-8.0.3_fr.tar.xz
+RUN sudo tar -xvJf tor-browser-linux64-8.0.3_fr.tar.xz
+RUN rm -rf tor-browser-linux64-8.0.3_fr.tar.xz
+RUN sudo chown -R torbrowser:torbrowser tor-browser_fr/
+RUN chmod +x tor-browser_fr/Browser/start-tor-browser
+
+RUN sudo apt-get --purge autoremove -y wget xz-utils
+
+WORKDIR /home/torbrowser/
 
 ENTRYPOINT tor-browser_fr/Browser/start-tor-browser
