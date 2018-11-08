@@ -20,9 +20,9 @@ libxt6 \
 libpulse0 \
 libcanberra-gtk-module
 
-RUN useradd -d /home/torbrowser -m torbrowser
-RUN passwd -d torbrowser
-RUN adduser torbrowser sudo
+RUN useradd -d /home/torbrowser -m torbrowser && \
+passwd -d torbrowser && \
+adduser torbrowser sudo
 
 USER torbrowser
 
