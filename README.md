@@ -1,6 +1,6 @@
 # TOR BROWSER
 
-![tor-browser](https://raw.githubusercontent.com/oda-alexandre/tor-browser/master/logo-tor-browser.png) ![docker](https://raw.githubusercontent.com/oda-alexandre/tor-browser/master/logo-docker.png)
+![tor-browser](https://raw.githubusercontent.com/oda-alexandre/tor-browser/master/img/logo-tor-browser.png) ![docker](https://raw.githubusercontent.com/oda-alexandre/tor-browser/master/img/logo-docker.png)
 
 
 ## INDEX
