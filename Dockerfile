@@ -35,7 +35,10 @@ RUN sudo chown -R torbrowser:torbrowser tor-browser_fr/
 RUN chmod +x tor-browser_fr/Browser/start-tor-browser
 
 RUN sudo apt-get --purge autoremove -y \
-wget \
-xz-utils
+wget && \
+sudo apt-get autoclean -y && \
+sudo rm /etc/apt/sources.list && \
+sudo rm -rf /var/cache/apt/archives/* && \
+sudo rm -rf /var/lib/apt/lists/*
 
 CMD /bin/bash tor-browser_fr/Browser/start-tor-browser
