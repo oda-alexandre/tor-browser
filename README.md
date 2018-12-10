@@ -30,7 +30,7 @@ Installer [Docker](https://www.docker.com)
 ## INSTALLATION
 
 ```
-docker run -d --name tor-browser -v /tmp/.X11-unix/:/tmp/.X11-unix/ -v /dev/snd:/dev/snd -v /dev/shm:/dev/shm -v /var/run/dbus:/var/run/dbus -e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native --group-add $(getent group audio | cut -d: -f3) -v ${HOME}:/home/torbrowser -e DISPLAY alexandreoda/tor-browser
+docker run -d --name tor-browser -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev/snd:/dev/snd -v /dev/shm:/dev/shm -v /etc/machine-id:/etc/machine-id:ro -e DISPLAY=unix$DISPLAY -v ${HOME}:/home/torbrowser alexandreoda/tor-browser
 ```
 
 ## LICENSE
