@@ -39,4 +39,4 @@ sudo rm /etc/apt/sources.list && \
 sudo rm -rf /var/cache/apt/archives/* && \
 sudo rm -rf /var/lib/apt/lists/*
 
-CMD /bin/bash tor-browser_fr/Browser/start-tor-browser
+CMD cd tor-browser_fr/Browser/ && ./start-tor-browser
