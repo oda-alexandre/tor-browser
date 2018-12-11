@@ -15,7 +15,8 @@ libxrender1 \
 libx11-xcb-dev \
 libx11-xcb1 \
 libxt6 \
-xz-utils
+xz-utils \
+wget
 
 RUN useradd -d /home/torbrowser -m torbrowser && \
 passwd -d torbrowser && \
