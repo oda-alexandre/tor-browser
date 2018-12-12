@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -e /etc/snort/snort.conf ]
+if [ -e /usr/bin/torbrowser-launcher ]
 then
   torbrowser-launcher
 else
