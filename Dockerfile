@@ -32,4 +32,6 @@ RUN chmod +x torbrowser.sh
 
 USER torbrowser
 
+ENTRYPOINT /bin/bash
+
 CMD ./torbrowser.sh
