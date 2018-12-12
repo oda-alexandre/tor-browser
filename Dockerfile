@@ -1,4 +1,4 @@
-FROM debian:stretch-slim
+FROM debian:buster-slim
 
 MAINTAINER https://oda-alexandre.github.io
 # source > https://github.com/jessfraz/dockerfiles/tree/master/tor-browser/stable
