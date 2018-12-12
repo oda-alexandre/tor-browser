@@ -4,54 +4,52 @@ MAINTAINER https://oda-alexandre.github.io
 # source > https://github.com/jessfraz/dockerfiles/tree/master/tor-browser/stable
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
-sudo \
-ca-certificates \
-curl \
-dirmngr \
-gnupg \
-libasound2 \
-libdbus-glib-1-2 \
-libgtk-3-0 \
-libxrender1 \
-libx11-xcb-dev \
-libx11-xcb1 \
-libxt6 \
-xz-utils
+	ca-certificates \
+	curl \
+	dirmngr \
+	gnupg \
+	libasound2 \
+	libdbus-glib-1-2 \
+	libgtk-3-0 \
+	libxrender1 \
+	libx11-xcb-dev \
+	libx11-xcb1 \
+	libxt6 \
+	xz-utils \
+	&& rm -rf /var/lib/apt/lists/*
 
-RUN useradd -d /home/torbrowser -m torbrowser && \
-passwd -d torbrowser && \
-adduser torbrowser sudo
+ENV HOME /home/user
 
-RUN cd /tmp && \
-curl -sSOL "https://www.torproject.org/dist/torbrowser/8.0.4/tor-browser-linux64-8.0.4_en-US.tar.xz" && \
-curl -sSOL "https://www.torproject.org/dist/torbrowser/8.0.4/tor-browser-linux64-8.0.4_en-US.tar.xz.asc" && \
-export GNUPGHOME="$(mktemp -d)" && \
-for server in $(shuf -e \
+RUN useradd --create-home --home-dir $HOME user \
+	&& chown -R user:user $HOME
+
+ENV LANG C.UTF-8
+
+ENV TOR_VERSION 8.0.4
+ENV TOR_FINGERPRINT 0x4E2C6E8793298290
+
+RUN cd /tmp \
+	&& curl -sSOL "https://www.torproject.org/dist/torbrowser/${TOR_VERSION}/tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz" \
+	&& curl -sSOL "https://www.torproject.org/dist/torbrowser/${TOR_VERSION}/tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz.asc" \
+	&& export GNUPGHOME="$(mktemp -d)" \
+	&& for server in $(shuf -e \
 			ha.pool.sks-keyservers.net \
 			hkp://p80.pool.sks-keyservers.net:80 \
 			keyserver.ubuntu.com \
 			hkp://keyserver.ubuntu.com:80 \
 			pgp.mit.edu) ; do \
-		gpg --no-tty --keyserver "${server}" --recv-keys 0x4E2C6E8793298290 && break || : ; \
-	done && \
-	gpg --fingerprint --keyid-format LONG 0x4E2C6E8793298290 | grep "Key fingerprint = EF6E 286D DA85 EA2A 4BA7  DE68 4E2C 6E87 9329 8290" && \
-	gpg --verify tor-browser-linux64-8.0.4_en-US.tar.xz.asc && \
-	tar -vxJ --strip-components 1 -C /usr/local/bin -f tor-browser-linux64-8.0.4_en-US.tar.xz && \
-	rm -rf tor-browser* "$GNUPGHOME" && \
-	chown -R torbrowser:torbrowser /usr/local/bin
+		gpg --no-tty --keyserver "${server}" --recv-keys ${TOR_FINGERPRINT} && break || : ; \
+	done \
+	&& gpg --fingerprint --keyid-format LONG ${TOR_FINGERPRINT} | grep "Key fingerprint = EF6E 286D DA85 EA2A 4BA7  DE68 4E2C 6E87 9329 8290" \
+	&& gpg --verify tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz.asc \
+	&& tar -vxJ --strip-components 1 -C /usr/local/bin -f tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz \
+	&& rm -rf tor-browser* "$GNUPGHOME" \
+	&& chown -R user:user /usr/local/bin
 
-RUN apt-get --purge autoremove -y \
-curl && \
-apt-get autoclean -y && \
-rm /etc/apt/sources.list && \
-rm -rf /var/cache/apt/archives/* && \
-rm -rf /var/lib/apt/lists/*
+COPY local.conf /etc/fonts/local.conf
 
-COPY ./includes/local.conf /etc/fonts/local.conf
-
-WORKDIR /home/torbrowser/
-
-USER torbrowser
+WORKDIR $HOME
+USER user
 
 ENTRYPOINT /bin/bash
 
