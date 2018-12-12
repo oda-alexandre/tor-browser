@@ -1,6 +1,7 @@
 FROM debian:stretch-slim
 
 MAINTAINER https://oda-alexandre.github.io
+# source > https://github.com/jessfraz/dockerfiles/tree/master/tor-browser/stable
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
 sudo \
@@ -45,6 +46,8 @@ apt-get autoclean -y && \
 rm /etc/apt/sources.list && \
 rm -rf /var/cache/apt/archives/* && \
 rm -rf /var/lib/apt/lists/*
+
+COPY ./includes/local.conf /etc/fonts/local.conf
 
 WORKDIR /home/torbrowser/
 
