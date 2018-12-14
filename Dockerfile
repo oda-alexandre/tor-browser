@@ -45,5 +45,4 @@ WORKDIR /home/torbrowser
 
 USER torbrowser
 
-ENTRYPOINT /bin/bash
-CMD /usr/local/bin/Browser/start-tor-browser --log /dev/stdout
+CMD /bin/bash /usr/local/bin/Browser/start-tor-browser --log /dev/stdout
