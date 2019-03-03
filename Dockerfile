@@ -1,6 +1,11 @@
 FROM debian:stretch-slim
 
-MAINTAINER https://oda-alexandre.github.io
+MAINTAINER https://oda-alexandre.com
+
+# VARIABLES
+ENV USER torbrowser
+ENV LANG fr_FR.UTF-8
+ENV VERSION 8.0.4
 
 # INSTALLATION DES PREREQUIS
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -25,8 +30,8 @@ adduser torbrowser sudo
 
 # INSTALLATION DE L'APPLICATION ET DE LA CLEF GPG
 RUN cd /tmp && \
-	curl -sSOL "https://dist.torproject.org/torbrowser/8.0.4/tor-browser-linux64-8.0.4_fr.tar.xz" && \
-	curl -sSOL "https://dist.torproject.org/torbrowser/8.0.4/tor-browser-linux64-8.0.4_fr.tar.xz.asc" && \
+	curl -sSOL "https://dist.torproject.org/torbrowser/${VERSION}/tor-browser-linux64-8.0.4_fr.tar.xz" && \
+	curl -sSOL "https://dist.torproject.org/torbrowser/${VERSION}/tor-browser-linux64-8.0.4_fr.tar.xz.asc" && \
 	export GNUPGHOME="$(mktemp -d)" && \
 	for server in $(shuf -e \
 	 ha.pool.sks-keyservers.net \

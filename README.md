@@ -1,25 +1,32 @@
 # TOR BROWSER
 
-![tor-browser](https://raw.githubusercontent.com/oda-alexandre/tor-browser/master/img/logo-tor-browser.png) ![docker](https://raw.githubusercontent.com/oda-alexandre/tor-browser/master/img/logo-docker.png)
+[![dockeri.co](https://dockeri.co/image/alexandreoda/tor-browser)](https://hub.docker.com/r/alexandreoda/tor-browser)
 
 
 ## INDEX
 
-- [Build Docker](#BUILD)
+- [Badges](#BADGES)
 - [Introduction](#INTRODUCTION)
 - [Prerequis](#PREREQUIS)
 - [Installation](#INSTALLATION)
 - [License](#LICENSE)
 
 
-## BUILD DOCKER
+## BADGES
 
-[![tor-browser docker build](https://img.shields.io/docker/build/alexandreoda/tor-browser.svg)](https://hub.docker.com/r/alexandreoda/tor-browser)
+[![version](https://images.microbadger.com/badges/version/alexandreoda/tor-browser.svg)](https://microbadger.com/images/alexandreoda/tor-browser)
+[![size](https://images.microbadger.com/badges/image/alexandreoda/tor-browser.svg)](https://microbadger.com/images/alexandreoda/tor-browser")
+[![build](https://img.shields.io/docker/build/alexandreoda/tor-browser.svg)](https://hub.docker.com/r/alexandreoda/tor-browser)
+[![automated](https://img.shields.io/docker/automated/alexandreoda/tor-browser.svg)](https://hub.docker.com/r/alexandreoda/tor-browser)
 
 
 ## INTRODUCTION
 
-Ce repository contient le fichier Dockerfile de [Tor Browser](https://www.torproject.org/projects/torbrowser.html.en) en francais pour [docker](https://www.docker.com), mis à jour automatiquement dans le [docker hub](https://hub.docker.com/r/alexandreoda/tor-browser/) public.
+Ce repository contient le fichier Dockerfile de
+
+- [Tor Browser](https://www.torproject.org/projects/torbrowser.html.en) en francais
+
+Mis à jour automatiquement dans le [docker hub public](https://hub.docker.com/r/alexandreoda/tor-browser/)
 
 
 ## PREREQUIS
