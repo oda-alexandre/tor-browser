@@ -29,22 +29,19 @@ useradd -d /home/${USER} -m ${USER} && \
 passwd -d ${USER} && \
 adduser ${USER} sudo
 
-# SELECTION ESPACE DE TRAVAIL
-WORKDIR /home/${USER}
-
 # INSTALLATION DE L'APPLICATION ET DE LA CLEF GPG
-curl -sSL "https://dist.torproject.org/torbrowser/${VERSION}/tor-browser-linux64-${VERSION}_fr.tar.xz" && \
-curl -sSL "https://dist.torproject.org/torbrowser/${VERSION}/tor-browser-linux64-${VERSION}_fr.tar.xz.asc" && \
+RUN curl -sSOL "https://dist.torproject.org/torbrowser/${VERSION}/tor-browser-linux64-${VERSION}_fr.tar.xz" && \
+curl -sSOL "https://dist.torproject.org/torbrowser/${VERSION}/tor-browser-linux64-${VERSION}_fr.tar.xz.asc" && \
 gpg --keyserver ha.pool.sks-keyservers.net --recv-keys ${KEYSERVER} && \
 gpg --verify tor-browser-linux64-${VERSION}_fr.tar.xz.asc && \
 tar -vxJ --strip-components 1 -C /usr/local/bin -f tor-browser-linux64-${VERSION}_fr.tar.xz && \
 rm -rf tor-browser* "$GNUPGHOME" && \
-chown -R torbrowser:torbrowser /usr/local/bin && \
+chown -R ${USER}:${USER} /usr/local/bin && \
 
 # NETTOYAGE
 apt-get --purge autoremove -y \
 wget \
-make && \
+curl && \
 apt-get autoclean -y && \
 rm /etc/apt/sources.list && \
 rm -rf /var/cache/apt/archives/* && \
@@ -52,6 +49,9 @@ rm -rf /var/lib/apt/lists/*
 
 # SELECTION UTILISATEUR
 USER ${USER}
+
+# SELECTION ESPACE DE TRAVAIL
+WORKDIR /home/${USER}
 
 # COMMANDE AU DEMARRAGE DU CONTENEUR
 CMD /bin/bash /usr/local/bin/Browser/start-tor-browser --log /dev/stdout
