@@ -4,7 +4,7 @@ MAINTAINER https://www.oda-alexandre.com/
 
 # VARIABLES
 ENV USER torbrowser
-ENV VERSION 8.0.6
+ENV VERSION 8.5.3
 ENV KEYSERVER 0x4E2C6E8793298290
 ENV FINGERPRINT EF6E 286D DA85 EA2A 4BA7  DE68 4E2C 6E87 9329 8290
 
@@ -27,10 +27,10 @@ xz-utils && \
 # AJOUT UTILISATEUR
 useradd -d /home/${USER} -m ${USER} && \
 passwd -d ${USER} && \
-adduser ${USER} sudo
+adduser ${USER} sudo && \
 
 # INSTALLATION DE L'APPLICATION ET DE LA CLEF GPG
-RUN curl -sSOL "https://dist.torproject.org/torbrowser/${VERSION}/tor-browser-linux64-${VERSION}_fr.tar.xz" && \
+curl -sSOL "https://dist.torproject.org/torbrowser/${VERSION}/tor-browser-linux64-${VERSION}_fr.tar.xz" && \
 curl -sSOL "https://dist.torproject.org/torbrowser/${VERSION}/tor-browser-linux64-${VERSION}_fr.tar.xz.asc" && \
 gpg --keyserver ha.pool.sks-keyservers.net --recv-keys ${KEYSERVER} && \
 gpg --verify tor-browser-linux64-${VERSION}_fr.tar.xz.asc && \
