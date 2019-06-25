@@ -1,6 +1,6 @@
 # TOR BROWSER
 
-[![dockeri.co](https://dockeri.co/image/alexandreoda/tor-browser)](https://hub.docker.com/r/alexandreoda/tor-browser)
+<img src="https://img.generation-nt.com/tor-browser_0096006401660498.png" />  
 
 
 ## INDEX
@@ -14,10 +14,7 @@
 
 ## BADGES
 
-[![version](https://images.microbadger.com/badges/version/alexandreoda/tor-browser.svg)](https://microbadger.com/images/alexandreoda/tor-browser)
-[![size](https://images.microbadger.com/badges/image/alexandreoda/tor-browser.svg)](https://microbadger.com/images/alexandreoda/tor-browser")
-[![build](https://img.shields.io/docker/build/alexandreoda/tor-browser.svg)](https://hub.docker.com/r/alexandreoda/tor-browser)
-[![automated](https://img.shields.io/docker/automated/alexandreoda/tor-browser.svg)](https://hub.docker.com/r/alexandreoda/tor-browser)
+[![pipeline status](https://gitlab.com/oda-alexandre/tor-browser/badges/master/pipeline.svg)](https://gitlab.com/oda-alexandre/tor-browser/commits/master)
 
 
 ## INTRODUCTION
