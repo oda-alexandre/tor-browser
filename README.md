@@ -7,8 +7,8 @@
 
 - [Badges](#BADGES)
 - [Introduction](#INTRODUCTION)
-- [Prerequis](#PREREQUIS)
-- [Installation](#INSTALLATION)
+- [Prerequisites](#PREREQUISITESITES)
+- [Install](#INSTALL)
 - [License](#LICENSE)
 
 
@@ -19,24 +19,31 @@
 
 ## INTRODUCTION
 
-Ce repository contient le fichier Dockerfile de
+Docker image of :
 
-- [Tor Browser](https://www.torproject.org/projects/torbrowser.html.en) en francais
+- [Tor Browser](https://www.torproject.org/projects/torbrowser.html.en) in french
 
-Mis à jour automatiquement dans le [docker hub public](https://hub.docker.com/r/alexandreoda/tor-browser/)
+Continuous integration on :
+
+- [gitlab](https://gitlab.com/oda-alexandre/tor-browser/pipelines)
+
+Automatically updated on :
+
+- [docker hub public](https://hub.docker.com/r/alexandreoda/tor-browser/)
 
 
-## PREREQUIS
+## PREREQUISITES
 
-Installer [docker](https://www.docker.com)
+Use [docker](https://www.docker.com)
 
 
-## INSTALLATION
+## INSTALL
 
 ```
 docker run -d --name tor-browser -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev/snd:/dev/snd -v /dev/shm:/dev/shm -v /etc/machine-id:/etc/machine-id:ro -e DISPLAY -v ${HOME}:/home/torbrowser alexandreoda/tor-browser
 ```
 
+
 ## LICENSE
 
-[![GPLv3+](http://gplv3.fsf.org/gplv3-127x51.png)](https://github.com/oda-alexandre/tor-browser/blob/master/LICENSE)
+[![GPLv3+](http://gplv3.fsf.org/gplv3-127x51.png)](https://gitlab.com/oda-alexandre/tor-browser/blob/master/LICENSE)
