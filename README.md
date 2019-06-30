@@ -1,6 +1,6 @@
 # TOR BROWSER
 
-<img src="https://img.generation-nt.com/tor-browser_0096006401660498.png" />  
+<img src="https://img.generation-nt.com/tor-browser_0096006401660498.png" width="200" height="200"/>
 
 
 ## INDEX
