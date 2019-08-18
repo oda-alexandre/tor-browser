@@ -1,6 +1,6 @@
 FROM debian:stretch-slim
 
-LABEL authors="https://www.oda-alexandre.com/"
+LABEL authors https://www.oda-alexandre.com/
 
 ENV USER torbrowser
 ENV VERSION 8.5.3
