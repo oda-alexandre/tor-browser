@@ -8,7 +8,7 @@ ENV FINGERPRINT 0x4E2C6E8793298290
 ENV KEYSERVER EF6E 286D DA85 EA2A 4BA7 DE68 4E2C 6E87 9329 8290
 
 RUN echo -e '\033[36;1m ******* INSTALL PACKAGES ******** \033[0m' && \
-apt-get update && apt-get install --no-install-recommends -y \
+apt update && apt install --no-install-recommends -y \
 sudo \
 ca-certificates \
 curl \
