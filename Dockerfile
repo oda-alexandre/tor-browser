@@ -3,13 +3,14 @@ FROM debian:stretch-slim
 LABEL authors https://www.oda-alexandre.com/
 
 ENV USER torbrowser
+ENV HOME /home/${USER}
 ENV LOCALES fr_FR.UTF-8
 ENV VERSION 8.5.3
 ENV FINGERPRINT 0x4E2C6E8793298290
 ENV KEYSERVER EF6E 286D DA85 EA2A 4BA7 DE68 4E2C 6E87 9329 8290
 
 RUN echo -e '\033[36;1m ******* INSTALL PACKAGES ******** \033[0m'; \
-  apt update && apt install --no-install-recommends -y \
+  apt-get update && apt-get install --no-install-recommends -y \
   sudo \
   ca-certificates \
   curl \
@@ -29,7 +30,7 @@ RUN echo -e '\033[36;1m ******* CHANGE LOCALES ******** \033[0m'; \
   locale-gen ${LOCALES}
 
 RUN echo -e '\033[36;1m ******* ADD USER ******** \033[0m'; \
-  useradd -d /home/${USER} -m ${USER}; \
+  useradd -d ${HOME} -m ${USER}; \
   passwd -d ${USER}; \
   adduser ${USER} sudo
 
@@ -37,7 +38,7 @@ RUN echo -e '\033[36;1m ******* SELECT USER ******** \033[0m'
 USER ${USER}
 
 RUN echo -e '\033[36;1m ******* SELECT WORKING SPACE ******** \033[0m'
-WORKDIR /home/${USER}
+WORKDIR ${HOME}
 
 RUN echo -e '\033[36;1m ******* INSTALL APP AND KEY GPG ******** \033[0m'
 RUN curl -sSOL -v https://dist.torproject.org/torbrowser/${VERSION}/tor-browser-linux64-${VERSION}_fr.tar.xz
