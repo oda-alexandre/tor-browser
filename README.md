@@ -1,7 +1,6 @@
 # TOR BROWSER
 
-<img src="https://assets.gitlab-static.net/uploads/-/system/project/avatar/12904482/Tor_Browser_logo.png" width="200" height="200"/>
-
+![logo](https://assets.gitlab-static.net/uploads/-/system/project/avatar/12904482/Tor_Browser_logo.png)
 
 ## INDEX
 
@@ -14,16 +13,13 @@
   - [INSTALL](#install)
   - [LICENSE](#license)
 
-
 ## BADGES
 
 [![pipeline status](https://gitlab.com/oda-alexandre/tor-browser/badges/master/pipeline.svg)](https://gitlab.com/oda-alexandre/tor-browser/commits/master)
 
-
 ## FIRST UPDATE
 
 Date: 01-01-01
-
 
 ## INTRODUCTION
 
@@ -39,16 +35,13 @@ Automatically updated on :
 
 - [docker hub public](https://hub.docker.com/r/alexandreoda/tor-browser/)
 
-
 ## PREREQUISITES
 
 Use [docker](https://www.docker.com)
 
-
 ## INSTALL
 
 ```docker run -d --name tor-browser -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev/snd:/dev/snd -v /dev/shm:/dev/shm -v /etc/machine-id:/etc/machine-id:ro -e DISPLAY -v ${HOME}:/home/torbrowser alexandreoda/tor-browser```
-
 
 ## LICENSE
 
