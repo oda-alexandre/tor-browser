@@ -21,7 +21,14 @@ RUN echo -e '\033[36;1m ******* INSTALL PACKAGES ******** \033[0m' && \
   libx11-xcb-dev \
   libx11-xcb1 \
   libxt6 \
-  xz-utils
+  xz-utils \
+  && \
+  echo -e '\033[36;1m ******* CLEANING ******** \033[0m' && \
+  apt-get --purge autoremove -y && \
+  apt-get autoclean -y && \
+  rm /etc/apt/sources.list && \
+  rm -rf /var/cache/apt/archives/* && \
+  rm -rf /var/lib/apt/lists/*
 
 RUN echo -e '\033[36;1m ******* ADD USER ******** \033[0m' && \
   useradd -d /home/${USER} -m ${USER} && \
@@ -34,24 +41,16 @@ USER ${USER}
 RUN echo -e '\033[36;1m ******* SELECT WORKING SPACE ******** \033[0m'
 WORKDIR /home/${USER}
 
-RUN echo -e '\033[36;1m ******* INSTALL APP AND KEY GPG ******** \033[0m'
-RUN curl -sSOL -v https://dist.torproject.org/torbrowser/${VERSION}/tor-browser-linux64-${VERSION}_fr.tar.xz
-RUN curl -sSOL -v https://dist.torproject.org/torbrowser/${VERSION}/tor-browser-linux64-${VERSION}_fr.tar.xz.asc
-RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys ${FINGERPRINT}
-RUN gpg --fingerprint --keyid-format LONG ${FINGERPRINT} | grep "Key fingerprint = ${KEYSERVER}"
-RUN gpg --verify tor-browser-linux64-${VERSION}_fr.tar.xz.asc
-RUN sudo tar -vxJ --strip-components 1 -C /usr/local/bin -f tor-browser-linux64-${VERSION}_fr.tar.xz
-RUN rm -rf tor-browser*
-RUN sudo chown -R ${USER}:${USER} /usr/local/bin
-
-RUN echo -e '\033[36;1m ******* CLEANING ******** \033[0m' && \
-  sudo apt-get --purge autoremove -y \
-  wget \
-  curl && \
-  sudo apt-get autoclean -y && \
-  sudo rm /etc/apt/sources.list && \
-  sudo rm -rf /var/cache/apt/archives/* && \
-  sudo rm -rf /var/lib/apt/lists/*
+RUN echo -e '\033[36;1m ******* INSTALL APP AND KEY GPG ******** \033[0m' && \
+  curl -sSOL -v https://dist.torproject.org/torbrowser/${VERSION}/tor-browser-linux64-${VERSION}_fr.tar.xz && \
+  curl -sSOL -v https://dist.torproject.org/torbrowser/${VERSION}/tor-browser-linux64-${VERSION}_fr.tar.xz.asc && \
+  gpg --keyserver ha.pool.sks-keyservers.net --recv-keys ${FINGERPRINT} && \
+  gpg --fingerprint --keyid-format LONG ${FINGERPRINT} | grep "Key fingerprint = ${KEYSERVER}" && \
+  gpg --verify tor-browser-linux64-${VERSION}_fr.tar.xz.asc && \
+  sudo tar -vxJ --strip-components 1 -C /usr/local/bin -f tor-browser-linux64-${VERSION}_fr.tar.xz && \
+  rm -rf tor-browser* && \
+  sudo chown -R ${USER}:${USER} /usr/local/bin && \
+  sudo apt-get --purge autoremove -y wget curl
 
 RUN echo -e '\033[36;1m ******* CONTAINER START COMMAND ******** \033[0m'
 CMD /bin/bash /usr/local/bin/Browser/start-tor-browser --log /dev/stdout \
