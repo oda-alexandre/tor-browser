@@ -41,7 +41,7 @@ Use [docker](https://www.docker.com)
 ### DOCKER RUN
 
 ```\
-docker  run -d --name tor-browser -v ${HOME}:/home/torbrowser -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev/shm:/dev/shm -v /etc/machine-id:/etc/machine-id:ro -e DISPLAY alexandreoda/tor-browser
+docker run -d --name tor-browser -v ${HOME}:/home/torbrowser -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev/shm:/dev/shm -v /etc/machine-id:/etc/machine-id:ro -e DISPLAY alexandreoda/tor-browser
 ```
 
 ### DOCKER COMPOSE
