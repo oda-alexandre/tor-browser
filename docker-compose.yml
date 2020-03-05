@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  tor-browser:
+    container_name: tor-browser
+    image: alexandreoda/tor-browser
+    restart: "no"
+    privileged: false
+    environment:
+      - DISPLAY
+    volumes:
+      - "${HOME}:/home/torbrowser"
+      - "/tmp/.X11-unix:/tmp/.X11-unix"
+      - "/dev/shm:/dev/shm"
+      - "/etc/machine-id:/etc/machine-id:ro"
+    ports:
+      - "80"
+      - "443"
+      - "9050"

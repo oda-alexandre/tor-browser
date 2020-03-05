@@ -10,6 +10,8 @@
   - [INTRODUCTION](#introduction)
   - [PREREQUISITES](#prerequisites)
   - [INSTALL](#install)
+    - [DOCKER RUN](#docker-run)
+    - [DOCKER COMPOSE](#docker-compose)
   - [LICENSE](#license)
 
 ## BADGES
@@ -24,7 +26,7 @@ Docker image of :
 
 Continuous integration on :
 
-- [gitlab](https://gitlab.com/oda-alexandre/tor-browser/pipelines)
+- [gitlab pipelines](https://gitlab.com/oda-alexandre/tor-browser/pipelines)
 
 Automatically updated on :
 
@@ -36,7 +38,35 @@ Use [docker](https://www.docker.com)
 
 ## INSTALL
 
-```docker run -d --name tor-browser -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev/snd:/dev/snd -v /dev/shm:/dev/shm -v /etc/machine-id:/etc/machine-id:ro -e DISPLAY -v ${HOME}:/home/torbrowser alexandreoda/tor-browser```
+### DOCKER RUN
+
+```\
+docker  run -d --name tor-browser -v ${HOME}:/home/torbrowser -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev/shm:/dev/shm -v /etc/machine-id:/etc/machine-id:ro -e DISPLAY alexandreoda/tor-browser
+```
+
+### DOCKER COMPOSE
+
+```yml
+version: "3.7"
+
+services:
+  tor-browser:
+    container_name: tor-browser
+    image: alexandreoda/tor-browser
+    restart: "no"
+    privileged: false
+    environment:
+      - DISPLAY
+    volumes:
+      - "${HOME}:/home/torbrowser"
+      - "/tmp/.X11-unix:/tmp/.X11-unix"
+      - "/dev/shm:/dev/shm"
+      - "/etc/machine-id:/etc/machine-id:ro"
+    ports:
+      - "80"
+      - "443"
+      - "9050"
+```
 
 ## LICENSE
 
